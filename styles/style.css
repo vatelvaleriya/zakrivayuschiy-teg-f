@@ -13,4 +13,295 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-family: var(--main-text);
+  font-variation-settings: 'wght' var(--main-text-weight);
+  background-image: var(--page-background);
+  background-attachment: fixed;
+  background-size: cover;
+  display:flex;
+  flex-direction: column;
+  align-items: center; 
+}
+.header {
+  display:flex;
+  justify-content: center;
+  inline-size: clamp(375px, 30.52vw + 260.55px, 700px);
+  background-color: var(--main-color);
+  border: 2px solid var(--accent-color);
+  min-block-size: 327px;
+  margin: 100px 0 98px 0;
+  
+}
+.header-container {
+  padding-inline: clamp(16px, 10vw - 21.5px, 122.5px);
+  padding-block: clamp(122px, 0.751vw + 119.184px, 130px);
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--accent-text);
+}
+.header-container h1 {
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  margin-block-end: 20px;
+}
+.header-container p {
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  text-transform:uppercase;
+}
+.main {
+  inline-size: clamp(375px, 30.52vw + 260.55px, 700px);
+  display: flex;
+  flex-direction: column;
+  gap:50px;
+  align-items: center;
+}
+.main h2 {
+  font-variation-settings: 'wght' var(--title-text-weight);
+  font-size: 18px;
+  padding: 4px 10px;
+}
+.card {
+  border: 2px solid var(--accent-color);
+  background-color: var(--main-color);
+}
+.card-image-container {
+  position:relative;
+}
+.card-image {
+  inline-size: 100%;
+  block-size: 100%;
+  border-top: 2px solid var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
+}
+.card-image-container h3 {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  text-transform: uppercase;
+  text-shadow:
+   -1px -1px 0 var(--main-color),
+    1px -1px 0 var(--main-color),
+   -1px  1px 0 var(--main-color),
+    1px  1px 0 var(--main-color);
+  font-family: var(--accent-text);
+  color: var(--accent-color);
+  mix-blend-mode: hard-light;
+  opacity: 0.5;
+  font-size: 14px;
+  margin-inline-start: 25px;
+  line-height: 1.2;
+}
+@supports (-webkit-text-stroke: 3px rgb(255 255 255 / 0.2)) {
+  .card-image-container h3 {
+    opacity: 0.9;
+    -webkit-text-stroke: 3px rgb(255 255 255 / 0.2);
+    text-shadow: none;
+  }
+}
+/*фильтры*/
+.hue-rotate {
+  filter:hue-rotate(320deg) contrast(1.1);
+}
+.contrast {
+  filter:contrast(1.2);
+}
+.saturate-dark {
+  filter:saturate(150%) brightness(90%);
+}
+.saturate-light {
+  filter:saturate(130%) brightness(110%); 
+}
+.grayscale {
+  filter:grayscale(1) brightness(90%) contrast(1.2);
+}
+.sepia {
+  filter:sepia(1);
+}
+.card p {
+  margin: 25px;
+  font-size: 18px;
+  line-height: 116.7%;
+}
+/*кнопки*/
+.card-button-container {
+  margin-block-end: 25px;
+  margin-inline-end: 25px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap:7px;
+}
+button {
+  background-color: var(--main-color);
+  border: 2px solid var(--accent-color);
+  cursor:pointer;
+  position: relative;
+  overflow: hidden;
+}
+/*ховер кнопок в макете и в видео отличался, я сделала как в видео*/
+button:not(.card__icon-button)::before { 
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--accent-color);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease-in-out; 
+}
+button:not(.card__icon-button):hover::before {
+  transform: translateX(0);
+}
+button:focus {
+  outline: none;
+}
+button:not(.card__icon-button):focus-visible {
+  box-shadow:2px 2px 0 var(--accent-color);
+  transition:0.3s ease;
+}
+.button__text {
+  font-family: var(--accent-text);
+  font-size: 14px;
+  line-height: 150%;
+}
+button .button__text,
+button .icon-dialog {
+  position: relative;
+  z-index: 1;
+  mix-blend-mode: difference;
+  color: var(--main-color);
+}
+/*кнопка сердца*/
+.card__icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0 2px;
+}
+.card__icon-button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: -2px;
+  transition: 0.3s ease;
+}
+.like-icon {
+  block-size: 39px;
+  inline-size: 36px;
+  overflow: visible; 
+}
+.contour {
+  transition: fill 0.1s linear 0s;
+}
+.core {
+  transition: fill 0.3s linear 0.03s;
+}
+.main-body{
+  transition: fill 0.3s linear 0s;
+}
+.sparks {
+  opacity: 0;
+}
+.like-icon:hover .core,
+.like-icon:hover .main-body,
+.like-icon:hover .contour {
+  fill: var(--accent-color);
+}
+.like-icon:hover .core,
+.like-icon:active .core,
+.like-icon.is-liked .core {
+  transition-delay: 0;
+}
+.like-icon:hover .main-body, 
+.like-icon:active .main-body,
+.like-icon.is-liked .main-body {
+  transition-delay: 0.05s;
+}
+.like-icon:active .core,
+.like-icon:active .main-body,
+.like-icon.is-liked .contour,
+.like-icon.is-liked .main-body,
+.like-icon.is-liked .core {
+  fill: var(--animation-fill-color);
+}
+.like-icon.is-liked .contour {
+  transition: 0.3s 0.06s;
+}
+.is-liked .heart {
+  animation: heart 0.3s ease-in 0.1s 1 forwards;
+  transform-origin: center center; /*в .like-icon у меня эта настройка не сработала*/
+}
+.is-liked .sparks {
+  animation: spark 0.3s ease-in 0.3s 1 forwards;
+}
+/*кнопка like*/
+.card__like-button {
+  min-block-size: 39px;
+  min-inline-size: 130px;
+}
+/*кнопка сохранить на память*/
+.button-dialog-open {
+  margin-block-end: 100px;
+  block-size: clamp(55px, -2.723vw + 94.21px, 84px);
+  inline-size: clamp(306px, calc(295.8px + 2.72vw),335px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 17px;
+  gap:8px;
+}
+.button-dialog-open .icon-dialog{
+  block-size:28px;
+  aspect-ratio: 1 / 1; 
+  flex-shrink: 0;
+}
+/*окно диалога*/
+.dialog {
+  min-block-size: 191px;
+  inline-size: clamp(341px, calc(336.77px + 1.127vw), 353px);
+}
+.dialog[open]::backdrop {
+  backdrop-filter: brightness(0.3);
+}
+@supports (-webkit-backdrop-filter: brightness(0.3)) {
+  .dialog[open]::backdrop {
+    -webkit-backdrop-filter: brightness(0.3);
+  }
+}
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 15px 25px;
+}
+.icon-dialog-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-block-end: 15px;
+}
+.dialog-container .icon-dialog {
+  max-block-size: 39px;
+  aspect-ratio: 1 / 1; 
+  flex-shrink: 0;
+}
+.dialog-container button {
+  min-block-size:38px;
+}
+.dialog-text {
+  text-transform:uppercase;
+  margin-inline-start: 12px;
+}
+@media (width > 375px) {
+.button-dialog-open {
+  flex-direction: row;
+  justify-content:center;
+}
+.button-dialog-open .icon-dialog{
+  block-size: 21px;
+}
+.dialog-container {
+  margin: 15px 15px;
+}
+.dialog-text {
+  margin-inline-start: 20px;
+}
 }
