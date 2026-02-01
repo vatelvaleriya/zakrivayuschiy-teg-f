@@ -28,7 +28,7 @@
   inline-size: clamp(375px, 30.52vw + 260.55px, 700px);
   background-color: var(--main-color);
   border: 2px solid var(--accent-color);
-  margin: 98px 0 98px 0; 
+  margin: 98px 0 98px 0;
 }
 .header-container {
   padding-inline: clamp(16px, 10vw - 21.5px, 122.5px);
