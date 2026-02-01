@@ -28,9 +28,7 @@
   inline-size: clamp(375px, 30.52vw + 260.55px, 700px);
   background-color: var(--main-color);
   border: 2px solid var(--accent-color);
-  min-block-size: 327px;
-  margin: 100px 0 98px 0;
-  
+  margin: 98px 0 98px 0; 
 }
 .header-container {
   padding-inline: clamp(16px, 10vw - 21.5px, 122.5px);
@@ -73,7 +71,7 @@
   border-top: 2px solid var(--accent-color);
   border-bottom: 2px solid var(--accent-color);
 }
-.card-image-container h3 {
+.card-label {
   position: absolute;
   top: 25px;
   right: 25px;
@@ -84,18 +82,18 @@
    -1px  1px 0 var(--main-color),
     1px  1px 0 var(--main-color);
   font-family: var(--accent-text);
+  opacity: 0.5;
   color: var(--accent-color);
   mix-blend-mode: hard-light;
-  opacity: 0.5;
   font-size: 14px;
-  margin-inline-start: 25px;
+  text-align: right;
   line-height: 1.2;
 }
-@supports (-webkit-text-stroke: 3px rgb(255 255 255 / 0.2)) {
-  .card-image-container h3 {
-    opacity: 0.9;
-    -webkit-text-stroke: 3px rgb(255 255 255 / 0.2);
+@supports (-webkit-text-stroke: 1px var(--main-color)) or (text-stroke: 1px var(--main-color)) {
+  .card-label {
     text-shadow: none;
+    -webkit-text-stroke: 1px var(--main-color);
+    text-stroke: 1px var(--main-color);
   }
 }
 /*фильтры*/
@@ -141,13 +139,15 @@ button {
   position: relative;
   overflow: hidden;
 }
-/*ховер кнопок в макете и в видео отличался, я сделала как в видео*/
+button:not(.card__icon-button) {
+  transition:0.3s ease;
+}
 button:not(.card__icon-button)::before {
   content: '';
   position: absolute;
   inset: 0;
   background-color: var(--accent-color);
-  transform: translateX(-100%);
+  transform: translateX(-100%) translateY(-50%);
   transition: transform 0.5s ease-in-out;
 }
 button:not(.card__icon-button):hover::before {
@@ -158,7 +158,6 @@ button:focus {
 }
 button:not(.card__icon-button):focus-visible {
   box-shadow:2px 2px 0 var(--accent-color);
-  transition:0.3s ease;
 }
 .button__text {
   font-family: var(--accent-text);
@@ -200,6 +199,10 @@ button .icon-dialog {
 .main-body {
   transition: fill 0.3s linear 0s;
 }
+.core,
+.main-body {
+  fill: transparent;
+}
 .sparks {
   opacity: 0;
 }
@@ -229,15 +232,15 @@ button .icon-dialog {
   transition: 0.3s 0.06s;
 }
 .is-liked .heart {
-  animation: heart 0.3s ease-in 0.1s 1 forwards;
+  animation: heart 0.3s ease-in 0.1s 1;
   transform-origin: center center; /*в .like-icon у меня эта настройка не сработала*/
 }
 .is-liked .sparks {
-  animation: spark 0.3s ease-in 0.3s 1 forwards;
+  animation: spark 0.3s ease-in 0.3s 1;
 }
 /*кнопка like*/
 .card__like-button {
-  min-block-size: 39px;
+  padding-block: 7px;
   min-inline-size: 130px;
 }
 /*кнопка сохранить на память*/
@@ -258,22 +261,17 @@ button .icon-dialog {
 }
 /*окно диалога*/
 .dialog {
-  min-block-size: 191px;
   inline-size: clamp(341px, calc(336.77px + 1.127vw), 353px);
 }
 .dialog[open]::backdrop {
-  backdrop-filter: brightness(0.3);
-}
-@supports (-webkit-backdrop-filter: brightness(0.3)) {
-  .dialog[open]::backdrop {
-    -webkit-backdrop-filter: brightness(0.3);
-  }
+  background-color: var(--accent-color);
+  opacity: 0.5;
 }
 .dialog-container {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin: 15px 25px;
+  margin: 18px 25px;
 }
 .icon-dialog-container {
   display: flex;
@@ -287,7 +285,8 @@ button .icon-dialog {
   flex-shrink: 0;
 }
 .dialog-container button {
-  min-block-size:38px;
+  padding-block: 6.5px;
+  text-transform:uppercase;
 }
 .dialog-text {
   text-transform:uppercase;
@@ -302,7 +301,7 @@ button .icon-dialog {
   block-size: 21px;
 }
 .dialog-container {
-  margin: 15px 15px;
+  margin: 18px 15px;
 }
 .dialog-text {
   margin-inline-start: 20px;
