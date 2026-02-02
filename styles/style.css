@@ -147,7 +147,7 @@ button:not(.card__icon-button)::before {
   position: absolute;
   inset: 0;
   background-color: var(--accent-color);
-  transform: translateX(-100%) translateY(-15%);
+  transform: translateX(-100%);
   transition: transform 0.5s ease-in-out;
 }
 button:not(.card__icon-button):hover::before {
@@ -253,6 +253,7 @@ button .icon-dialog {
   align-items: center;
   padding-block: 17px;
   gap:8px;
+  white-space: nowrap;
 }
 .button-dialog-open .icon-dialog {
   block-size:28px;
