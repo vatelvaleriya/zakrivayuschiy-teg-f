@@ -147,7 +147,7 @@ button:not(.card__icon-button)::before {
   position: absolute;
   inset: 0;
   background-color: var(--accent-color);
-  transform: translateX(-100%) translateY(-50%);
+  transform: translateX(-100%) translateY(-15%);
   transition: transform 0.5s ease-in-out;
 }
 button:not(.card__icon-button):hover::before {
@@ -179,11 +179,11 @@ button .icon-dialog {
   background: transparent;
   border: none;
   padding: 0 2px;
+  transition: 0.3s ease;
 }
 .card__icon-button:focus-visible {
   outline: 2px solid var(--accent-color);
   outline-offset: -2px;
-  transition: 0.3s ease;
 }
 .like-icon {
   block-size: 39px;
@@ -265,7 +265,7 @@ button .icon-dialog {
 }
 .dialog[open]::backdrop {
   background-color: var(--accent-color);
-  opacity: 0.5;
+  opacity: 0.75;
 }
 .dialog-container {
   display: flex;
